@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+        img {
+            display: block;
+        }
+        .img {
+            position: relative;
+        }
+        .warp {
+            width: 1200px;
+            height: 500px;
+            margin: 100px auto;
+            display: flex;
+            position: relative;
+        }
+        .warp > div:nth-child(1) {
+            width: 450px;
+            height: 450px;
+        }
+        .warp > div {
+            border:  1px solid #999;
+        }
+        .vis_img {
+            position: absolute;
+            left: 451px;
+            top: 0;
+            overflow: hidden;
+            width: 600px;
+            height: 600px;
+            display: none;
+        }
+        .vis_img > img {
+            width: 150%;
+            height: 150%;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+        .div_move {
+            width: 300px;
+            height: 300px;
+            position: absolute;
+            opacity: .5;
+            background-color: #fede4f;
+            top: 0;
+            left: 0;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="warp">
+        <div class="img">
+            <img src="./img/143ee5552851c813 (1).jpg" alt="">
+            <div class="div_move"></div>
+        </div>
+        <div class="vis_img">
+            <img src="./img/143ee5552851c813.jpg" alt="">
+        </div>
+    </div>
+    <script>
+        (function () {
+            //获取左边的照片盒子
+            var div_img = document.querySelector(".img"); 
+            div_img.onmouseenter = function () {
+                //获取移动的盒子
+                var div_move = document.querySelector(".div_move"); 
+                //获取要显示的图片
+                var vis_img = document.querySelector(".vis_img > img");
+                div_move.style.display = "block";
+                div_move.style.cursor = "move";
+                document.querySelector(".vis_img").style.display = "block"; 
+                //图片最大的移动距离X轴
+                var vis_max_left= vis_img.offsetWidth - document.querySelector(".vis_img").offsetWidth; 
+                //图片最大的移动距离Y轴
+                var vis_max_top= vis_img.offsetHeight - document.querySelector(".vis_img").offsetHeight; 
+                div_img.onmousemove = function (e) {
+                    x = (e.pageX - div_img.offsetParent.offsetLeft) - div_move.clientWidth * 0.5; 
+                    x = x < 0 ? 0 : x;
+                    //小方块可移动的距离X轴
+                    x = x > div_img.clientWidth - div_move.clientWidth ? div_img.clientWidth - div_move.clientWidth : x; 
+                    div_move.style.left = x + "px";
+                    console.log(e.pageY);
+                    y =(e.pageY - div_img.offsetParent.offsetTop) - div_move.clientHeight * 0.5;
+                    y = y < 0 ? 0 : y;
+                    //小方块可移动的距离Y轴
+                    y = y > div_img.clientHeight - div_move.clientHeight ? div_img.clientHeight - div_move.clientHeight : y; 
+                    div_move.style.top = y + "px";
+
+                    vis_img.style.left = -x * vis_max_left / (div_img.clientWidth - div_move.clientWidth) + "px";
+                    vis_img.style.top = -y * vis_max_top / (div_img.clientHeight - div_move.clientHeight) + "px";
+                }
+            }
+            div_img.onmouseleave = function () {
+                //获取移动的盒子
+                var div_move = document.querySelector(".div_move"); 
+                div_move.style.display = "none";
+                document.querySelector(".vis_img").style.display = "none";
+            }
+        })();
+    </script>
+</body>
+</html>

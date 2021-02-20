@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="./插件/reset.css">
+
+    <title>切换布局</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        a,
+        p {
+            display: block;
+            text-decoration: none;
+            color: #000;
+            transition: all .2s;
+            width: 54px;
+            height: 24px;
+            line-height: 24px;
+            text-align: center;
+            font-size: 12px;
+            /* cursor: pointer; */
+            user-select: none;
+        }
+
+        p.on {
+            background-color: #00a1d6;
+            color: #fff;
+        }
+
+        p:hover {
+            background-color: #00a1d6;
+            color: #fff;
+        }
+
+        .body_bg {
+            position: fixed;
+            top: 50px;
+            z-index: 1000;
+            margin-left: 615px;
+            left: calc(50% + 3px);
+
+        }
+
+        .warp_right {
+            position: relative;
+            border: 1px solid #e7e7e7;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+            z-index: 2;
+            background-color: #Fff;
+        }
+
+        .warp_right ul {
+            padding-top: 6px;
+            background: transparent;
+            display: flex;
+            flex-direction: column;
+
+        }
+
+        .warp_right ul li {
+            background-color: #Fff;
+            transition: all .2s;
+        }
+
+        .qiehuan {
+            height: 32px;
+            line-height: 32px;
+            position: relative;
+            margin-top: 5px;
+            cursor: pointer;
+            line-height: 32px;
+            text-align: center;
+            font-size: 12px;
+            color: #000;
+            border-top: 1px solid #e7e7e7;
+            border-bottom: 1px solid #e7e7e7;
+            background-color: #Fff;
+        }
+
+        .qiehuan:hover {
+            color: #fff;
+            background-color: #00a1d6;
+            transition: all .2s;
+        }
+
+        .dingbu {
+            position: absolute;
+            left: -1px;
+            bottom: -32px;
+            width: 56px;
+            line-height: 30px;
+            height: 32px;
+            border: 1px solid #e7e7e7;
+            border-top: none;
+            border-bottom-left-radius: 10px;
+            border-bottom-right-radius: 10px;
+            box-sizing: border-box;
+            line-height: 30px;
+            text-align: center;
+            font-size: 12px;
+            color: #000;
+            cursor: pointer;
+            background-color: #Fff;
+        }
+
+        .dingbu:hover {
+            background-color: #00a1d6;
+            transition: all .2s;
+            color: #fff;
+        }
+
+        .mask {
+            display: none;
+            position: fixed;
+            left: 0;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, .5);
+        }
+
+        .bg23 {
+            display: none;
+            position: absolute;
+            width: 130px;
+            height: 105%;
+            top: -20px;
+            right: -15px;
+            background-color: hsla(0, 0%, 100%, .8);
+            padding: 40px;
+            box-sizing: content-box;
+            border-radius: 2px;
+            background-image: url("./img/tab2233.png");
+            background-repeat: no-repeat;
+            background-position: 16px 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="body_bg">
+        <div class="mask"></div>
+        <div class="warp_right">
+            <ul>
+                <li>
+                    <p class="on">直播1</p>
+                </li>
+                <li>
+                    <p>直播2</p>
+                </li>
+                <li>
+                    <p>直播3</p>
+                </li>
+                <li>
+                    <p>直播4</p>
+                </li>
+                <li>
+                    <p>直播5</p>
+                </li>
+                <li>
+                    <p>直播6</p>
+                </li>
+                <li>
+                    <p>直播7</p>
+                </li>
+                <li>
+                    <p>直播8</p>
+                </li>
+                <li>
+                    <p>直播9</p>
+                </li>
+                <li>
+                    <p>直播10</p>
+                </li>
+                <li>
+                    <p>直播11</p>
+                </li>
+                <li>
+                    <p>直播12</p>
+                </li>
+                <li>
+                    <p>直播13</p>
+                </li>
+                <li>
+                    <p>直播14</p>
+                </li>
+                <li>
+                    <p>直播15</p>
+                </li>
+            </ul>
+            <div class="qiehuan">切换</div>
+            <div class="dingbu">顶部</div>
+        </div>
+
+        <div class="bg23"></div>
+    </div>
+    <script>
+        (function () {
+            var qiehuan = document.querySelector(".qiehuan"); //获取切换按钮
+            var bg23 = document.querySelector(".bg23"); //获取背景
+            var mask = document.querySelector(".mask"); //获取背景
+            var ul_li = document.querySelectorAll("ul > li");
+            qiehuan.onclick = function () {
+                bg23.style.display = "block";
+                mask.style.display = "block";
+                for (var i = 0; i < ul_li.length; i++) {
+                    ul_li[i].index = i;
+                    ul_li[i].onmousedown = function (e) {
+                        //获取父级元素距离浏览器顶部的距离
+                        var top = this.parentNode.parentNode.parentNode.offsetTop;
+                        //获取按下时li距离父级定位顶部的距离
+                        var li_top = this.offsetTop;
+                        //存放点击时的节点
+                        var li = this;
+                        var index = this.index;
+                        this.style.transition = "all 0s";
+                        document.onmousemove = function (e) {
+                            //获取要移动的Y距离
+                            var y = Math.abs(e.clientY - top - li_top);
+                            y = e.clientY - top > li_top ? y : -y;
+                            //获取实时Y轴的值
+                            var news_y = e.clientY - top;
+                            //让li移动
+                            li.style.transform = "translate(0px," + y + "px)";
+                            for (var j = 0; j < ul_li.length; j++){
+                                if (ul_li[j].offsetTop >= news_y && ul_li[j].offsetTop <= news_y + 10) {
+                                    ul_li[j].style.transform = "translate(0px,24px)";
+                                    if (ul_li[j].offsetTop < news_y) {
+                                        ul_li[j].style.transform = "translate(0px,0px)";
+                                    } else if (ul_li[j].offsetTop > news_y) {
+                                        ul_li[j].style.transform = "translate(0px,24px)";
+                                    }
+                                } else if (ul_li[j].offsetTop < news_y) {
+                                    ul_li[j].style.transform = "translate(0px,0px)";
+                                    
+                                }
+                            }
+                        }
+                    }
+                    document.onmouseup = function () {
+                        document.onmousemove = null;
+                    }
+                }
+
+            }
+            mask.onclick = function () {
+                bg23.style.display = "none";
+                mask.style.display = "none";
+            }
+        })();
+    </script>
+</body>
+
+</html>

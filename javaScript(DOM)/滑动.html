@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        html{
+            width: 100%;
+            height: 100%;
+        }
+        body{
+            height: inherit;
+            overflow: hidden;
+        }
+        * {
+            padding: 0px;
+            margin: 0px;
+        }
+        .div {
+            width: 300px;
+            height: 300px;
+            background-color: #f99;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="div">
+    </div>
+    <script>
+        var div = document.querySelectorAll(".div")[0];
+        var body_width = document.body.offsetWidth;         //获取body'的宽度
+        var div_width = div.offsetWidth;                    //获取div的宽度
+        var width = body_width - div_width;                 //获取div最大只能移动到body的最右边的值（不会出现滚动条）
+        console.log(document.offsetHeight);
+        var body_height = document.body.offsetHeight;
+        var div_height = div.offsetHeight;
+        var height = body_height - div_height;
+        div.onmousedown = function (e) {
+            var X = e.clientX;              //获取鼠标按下时鼠标距离浏览器左边的距离
+            var Y = e.clientY;              //获取鼠标按下时鼠标距离浏览器上边的距离
+            X = X - div.offsetLeft;         //用上次获取的左边的距离减去div盒子距离body盒子的左边距离，就是鼠标点击时距离div盒子的距离
+            Y = Y - div.offsetTop;
+            document.onmousemove = function (e) {
+                div.style.marginLeft = e.clientX - X + "px";
+                div.style.marginTop = e.clientY - Y + "px";
+                if (e.clientX < X) {                            //判断移动的距离小于点击时的距离（margin-left为负数时）
+                    div.style.marginLeft = "0px";               //始终为0
+                } else if (e.clientX - X > width) {             //判断margin-left的值大于不会出现滚动条的最大值时，
+                    div.style.marginLeft = width + "px";        //始终为最大值
+                }
+                if (e.clientY < Y) {
+                    div.style.marginTop = "0px";
+                } 
+                if (e.clientY - Y > height) {
+                    div.style.marginTop = height + "px";
+                }
+            }
+            document.onmouseup = function () {
+                document.onmousemove = null;
+            }
+        }
+    </script>
+</body>
+
+</html>

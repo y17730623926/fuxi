@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<script src="./插件/jQuery1.12.4.js"></script>
+</head>
+<body>
+	<input type="text" maxlength="8">
+	<script>
+		/*
+			正则表达式：
+				用构造函数创建正则对象：    new RegExp()
+				字面量写法： 		/hello/
+				方法：	test()			正则对象.test(目标)  有返回true  没有返回false
+				方括号: 		[0-9A-z]  ==>  [0|2|3|4]  	[^a]取反  除了a
+				() :   去整体  (com)  必须com连着一起出现
+				量词：
+					n+ 			n至少出现一次
+					n*			n出现0次或多次
+					n?			n出现一次或0次
+					n{x}		n必须出现X次
+					n{x,}		n至少出现x次
+					n{x,y}		n至少出现x次最多出现Y次
+					^n 			开头必须出现n
+					n$			结尾必须出现n
+		*/
+		// var str = "1213@qq.com";
+		// var reg = /[0-9A-z](.com)/ig;
+		// var reg = /[5-9]/ig;
+		// var result = reg.test(str);
+		// console.log(result);
+		// 判断邮箱
+		// function onchange(email){
+		// 	var reg = /^([A-z]|[0-9])(\w|\-)+@[A-z0-9]+\.([A-z]{2,4})$/;
+		// 	if(reg.test(email)){
+		// 		alert("邮箱格式正确");
+		// 	}else{
+		// 		alert("邮箱格式不正确");
+		// 	}
+		// }
+		// onchange(str);
+
+		var input = $("input");
+		input.keydown(function (e) {
+			if (e.keyCode === 13) {
+				var txt = $(this).val();
+				var result = txt.match(/^[\u4e00-\u9fa5][A-Z]\·[A-z0-9]{5}/);
+				console.log(result);
+			}
+		});
+	</script>
+</body>
+</html>

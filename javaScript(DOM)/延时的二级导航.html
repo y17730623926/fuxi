@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-size: 14px;
+            background: #999;
+        }
+
+        .wrap {
+            width: 1011px;
+            margin: 0 auto;
+            margin-top: 200px;
+            position: relative;
+        }
+
+        .navigator {
+            width: 1011px;
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 0;
+        }
+
+        .navigator>li {
+            list-style: none;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .navigator>li span:first-child {
+            transition: color .3s;
+        }
+
+        .navigator>li:hover span:first-child {
+            color: #00a1d6;
+        }
+
+        .number {
+            font-style: normal;
+            font-size: 12px;
+            display: inline-block;
+            background: #73c9e5;
+            border-radius: 2px;
+            color: #fff;
+            margin-left: 1px;
+            transform: scale(.85);
+            width: 32px;
+            text-align: center;
+            line-height: 1em;
+            height: 12px;
+        }
+
+        .second_navigator_box {
+            display: flex;
+            flex-direction: column;
+            flex-wrap: wrap;
+            width: 191px;
+            height: 120px;
+            background-color: white;
+            border-radius: 4px;
+        }
+
+        .second_navigator_box_max {
+            position: absolute;
+            bottom: 59px;
+            left: 0;
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .second_navigator_box a {
+            font-size: 12px;
+            padding: 9px 13px;
+            text-decoration: none;
+            color: black;
+            line-height: 1em;
+        }
+
+        .second_navigator {
+            width: 1011px;
+            margin: 0 auto;
+        }
+
+        .three_jiao {
+            width: 0;
+            height: 0;
+            border-bottom: 0px solid #000;
+            border-left: 4.5px solid transparent;
+            border-right: 4.5px solid transparent;
+            border-top: 4.5px solid #fff;
+            position: absolute;
+            bottom: -4.5px;
+            left: 30px;
+        }
+    </style>
+    <script src="commen.js"></script>
+</head>
+
+<body>
+    <div class="wrap">
+        <ul class="navigator">
+            <li>
+                <span>动画</span>
+                <span class="number">999+</span>
+            </li>
+            <li>
+                <span>动画</span>
+                <span class="number">999+</span>
+            </li>
+            <li>
+                <span>动画</span>
+                <span class="number">999+</span>
+            </li>
+            <li>
+                <span>动画</span>
+                <span class="number">999+</span>
+            </li>
+            <li>
+                <span>动画</span>
+                <span class="number">999+</span>
+            </li>
+            <li>
+                <span>动画</span>
+                <span class="number">999+</span>
+            </li>
+            <li>
+                <span>动画</span>
+                <span class="number">999+</span>
+            </li>
+            <li>
+                <span>动画</span>
+                <span class="number">999+</span>
+            </li>
+            <li>
+                <span>动画</span>
+                <span class="number">999+</span>
+            </li>
+            <li>
+                <span>动画</span>
+                <span class="number">999+</span>
+            </li>
+        </ul>
+        <div class="second_navigator">
+            <div class="second_navigator_box_max">
+                <div class="second_navigator_box">
+                    <a href="javascript:;">MAD.AMV</a>
+                    <a href="javascript:;">MMD.3D</a>
+                    <a href="javascript:;">短片.手书.配音</a>
+                    <a href="javascript:;">MAD.AMV</a>
+                    <a href="javascript:;">MMD.3D</a>
+                    <a href="javascript:;">MAD.AMV</a>
+                    <a href="javascript:;">MMD.3D</a>
+                </div>
+                <span class="three_jiao"></span>
+            </div>
+            <div class="second_navigator_box_max">
+                <div class="second_navigator_box">
+                    <a href="javascript:;">MAD.AMV</a>
+                    <a href="javascript:;">MMD.3D</a>
+                    <a href="javascript:;">短片.手书.配音</a>
+                    <a href="javascript:;">MAD.AMV</a>
+                    <a href="javascript:;">MMD.3D</a>
+                    <a href="javascript:;">MAD.AMV</a>
+                    <a href="javascript:;">MMD.3D</a>
+                </div>
+                <span class="three_jiao"></span>
+            </div>
+            <div class="second_navigator_box_max">
+                <div class="second_navigator_box">
+                    <a href="javascript:;">MAD.AMV</a>
+                    <a href="javascript:;">MMD.3D</a>
+                    <a href="javascript:;">短片.手书.配音</a>
+                    <a href="javascript:;">MAD.AMV</a>
+                    <a href="javascript:;">MMD.3D</a>
+                    <a href="javascript:;">MAD.AMV</a>
+                    <a href="javascript:;">MMD.3D</a>
+                </div>
+                <span class="three_jiao"></span>
+            </div>
+            <div class="second_navigator_box_max">
+                <div class="second_navigator_box">
+                    <a href="javascript:;">MAD.AMV</a>
+                    <a href="javascript:;">MMD.3D</a>
+                    <a href="javascript:;">短片.手书.配音</a>
+                    <a href="javascript:;">MAD.AMV</a>
+                    <a href="javascript:;">MMD.3D</a>
+                    <a href="javascript:;">MAD.AMV</a>
+                    <a href="javascript:;">MMD.3D</a>
+                </div>
+                <span class="three_jiao"></span>
+            </div>
+            <div class="second_navigator_box_max">
+                <div class="second_navigator_box">
+                    <a href="javascript:;">MAD.AMV</a>
+                    <a href="javascript:;">MMD.3D</a>
+                    <a href="javascript:;">短片.手书.配音</a>
+                    <a href="javascript:;">MAD.AMV</a>
+                    <a href="javascript:;">MMD.3D</a>
+                    <a href="javascript:;">MAD.AMV</a>
+                    <a href="javascript:;">MMD.3D</a>
+                </div>
+                <span class="three_jiao"></span>
+            </div>
+            <div class="second_navigator_box_max">
+                <div class="second_navigator_box">
+                    <a href="javascript:;">MAD.AMV</a>
+                    <a href="javascript:;">MMD.3D</a>
+                    <a href="javascript:;">短片.手书.配音</a>
+                    <a href="javascript:;">MAD.AMV</a>
+                    <a href="javascript:;">MMD.3D</a>
+                    <a href="javascript:;">MAD.AMV</a>
+                    <a href="javascript:;">MMD.3D</a>
+                </div>
+                <span class="three_jiao"></span>
+            </div>
+            <div class="second_navigator_box_max">
+                <div class="second_navigator_box">
+                    <a href="javascript:;">MAD.AMV</a>
+                    <a href="javascript:;">MMD.3D</a>
+                    <a href="javascript:;">短片.手书.配音</a>
+                    <a href="javascript:;">MAD.AMV</a>
+                    <a href="javascript:;">MMD.3D</a>
+                    <a href="javascript:;">MAD.AMV</a>
+                    <a href="javascript:;">MMD.3D</a>
+                </div>
+                <span class="three_jiao"></span>
+            </div>
+            <div class="second_navigator_box_max">
+                <div class="second_navigator_box">
+                    <a href="javascript:;">MAD.AMV</a>
+                    <a href="javascript:;">MMD.3D</a>
+                    <a href="javascript:;">短片.手书.配音</a>
+                    <a href="javascript:;">MAD.AMV</a>
+                    <a href="javascript:;">MMD.3D</a>
+                    <a href="javascript:;">MAD.AMV</a>
+                    <a href="javascript:;">MMD.3D</a>
+                </div>
+                <span class="three_jiao"></span>
+            </div>
+            <div class="second_navigator_box_max">
+                <div class="second_navigator_box">
+                    <a href="javascript:;">MAD.AMV</a>
+                    <a href="javascript:;">MMD.3D</a>
+                    <a href="javascript:;">短片.手书.配音</a>
+                    <a href="javascript:;">MAD.AMV</a>
+                    <a href="javascript:;">MMD.3D</a>
+                    <a href="javascript:;">MAD.AMV</a>
+                    <a href="javascript:;">MMD.3D</a>
+                </div>
+                <span class="three_jiao"></span>
+            </div>
+            <div class="second_navigator_box_max">
+                <div class="second_navigator_box">
+                    <a href="javascript:;">MAD.AMV</a>
+                    <a href="javascript:;">MMD.3D</a>
+                    <a href="javascript:;">短片.手书.配音</a>
+                    <a href="javascript:;">MAD.AMV</a>
+                    <a href="javascript:;">MMD.3D</a>
+                    <a href="javascript:;">MAD.AMV</a>
+                    <a href="javascript:;">MMD.3D</a>
+                </div>
+                <span class="three_jiao"></span>
+            </div>
+        </div>
+    </div>
+   
+    <script>
+    	var nav_list = $(".second_navigator_box_max");
+    	for (var i = 0; i < nav_list.length; i++) {
+    		if (i === 1) {
+    			nav_list[i].style.left = "120px";
+    		} else {
+    			nav_list[i].style.left = i * 100 + 20 + "px";
+    		}
+            nav_list[i].style.bottom = "59px";
+            nav_list[i].style.opacity = 0;
+    	}
+    	var li_list = $(".navigator > li");
+    	for (i = 0; i < li_list.length; i++) {
+    		li_list[i].index = i;   //存储索引值
+    		li_list[i].onmouseenter = function () {	        //鼠标移上事件
+    			
+                clearTimeout(this.dely_out);
+    		    //存储对应的this（节点），因为下面清除定时器时，this指向会发生改变，所以先把现在的this存储起来
+    			var that = this;
+    			this.dely = setTimeout(function () {
+    				clearInterval(that.core_out);
+    				var index = that.index;	//存储索引值
+    					//清除对应的移出定时器
+                    clearInterval(that.core);
+    				that.core = setInterval(function () {	//创建对应鼠标移上的定时器
+    					nav_list[index].style.pointerEvents = "auto";	//让他二级导航可以点击
+    					var bottom = parseInt(nav_list[index].style.bottom) || 59;
+    					
+    					var opacity =  +nav_list[index].style.opacity || 0;
+    					
+    					nav_list[index].style.bottom = bottom - 1 + "px";
+    					nav_list[index].style.opacity = opacity + 0.1;
+    					if (bottom <= 50) {
+    						clearInterval(that.core);	//清除对应的节点下的鼠标移上定时器
+    						nav_list[index].style.bottom = "49px";
+    						nav_list[index].style.opacity = 1;
+    					}
+    				}, 16);			
+    				//鼠标移上时，不能存在鼠标移出事件（注：对应的每个li标签都有一个单独的定时器），不然清楚时会卡住上一个还没运行完的移出事件	//鼠标移出时，不能存在鼠标移上事件（注：对应的每个li标签都有一个单独的定时器）
+    			}, 200)
+			}
+			li_list[i].onmouseleave = function () {			//鼠标移出事件
+				
+                clearTimeout(this.dely);
+				//存储对应的this（节点），因为下面清除定时器时，this指向会发生改变，所以先把现在的this存储起来
+				var that = this;
+				this.dely_out = setTimeout(function () {
+					var index = that.index;		//存储索引值
+					//清除对应的移上定时器
+					clearInterval(that.core);
+                    clearInterval(that.core_out);
+					that.core_out = setInterval(function () {		//创建对应鼠标移出的定时器
+						nav_list[index].style.pointerEvents = "none";	//让二级导航不可点击
+						var bottom = parseInt(nav_list[index].style.bottom) || 49;
+						
+						var opacity =  +nav_list[index].style.opacity || 1;
+						
+						nav_list[index].style.bottom = bottom + 1 + "px";
+						nav_list[index].style.opacity = opacity - 0.1;
+						
+						if (bottom >= 58) {
+							clearInterval(that.core_out);		//清除对应的鼠标移出定时器
+							nav_list[index].style.bottom = "59px";
+							nav_list[index].style.opacity = 0;
+						}
+					}, 16);
+				}, 200)
+			}
+            nav_list[i].index = i;
+            nav_list[i].onmouseenter = function () {        //移上二级导航
+                var index = this.index;
+                clearTimeout(li_list[index].dely_out); 
+            }
+            nav_list[i].onmouseleave = function () {        //一处二级导航
+                
+                var index = this.index; //对应的li的索引值
+                var li = li_list[index];//对应的li
+                clearTimeout(li.dely);
+				//存储对应的this（节点），因为下面清除定时器时，this指向会发生改变，所以先把现在的this存储起来
+				var that = li;
+				this.dely_out = setTimeout(function () {
+					var index = that.index;		//存储索引值
+					//清除对应的移上定时器
+					clearInterval(that.core);
+                    clearInterval(that.core_out);
+					that.core_out = setInterval(function () {		//创建对应鼠标移出的定时器
+						nav_list[index].style.pointerEvents = "none";	//让二级导航不可点击
+						var bottom = parseInt(nav_list[index].style.bottom) || 49;
+						
+						var opacity =  +nav_list[index].style.opacity || 1;
+						
+						nav_list[index].style.bottom = bottom + 1 + "px";
+						nav_list[index].style.opacity = opacity - 0.1;
+						
+						if (bottom >= 58) {
+							clearInterval(that.core_out);		//清除对应的鼠标移出定时器
+							nav_list[index].style.bottom = "59px";
+							nav_list[index].style.opacity = 0;
+						}
+					}, 16);
+				}, 200)
+            }
+        }
+
+
+</script>
+    bug1:
+        当在第一次移出时，行内样式获取不到bottom，然后会把动画核心代码中的获取直接返回59，然后出现bug，直接开始消失动画
+        <br>
+    bug2：
+        当在移出时，开启消失动画，再移上时清除的是延时动画而消失动画的核心代码还在运行，再移出时开启出现动画，然后开启两个定时器动画开始跳舞
+</body>
+</html>

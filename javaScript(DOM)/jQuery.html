@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<script src="./插件/jQuery1.12.4.js"></script>
+	<style>
+		* {
+			padding: 0;
+			margin: 0;
+		}
+	</style>
+</head>
+<body>
+	<div class="div">我是原生的div</div>
+	<div class="div">我是原生的div</div>
+	<script>
+		var div = $(".div").css({color:"deeppink",margin:"100px 0",fontSize:"30px",textAlign:"center"}).text("我是jQuery修改的div");
+		div.addClass("div_jQuery");			//不会改变原本的class名，只会添加
+		div.removeClass("div_jQuery");		//传一个字符串两个名字，都有都会删除
+		div.toggleClass("div_jQuery div");	//有则没，没则有 (两个名字，都有都会删除/添加)
+		div.attr("data-index",1);				//有值就是添加，没值就是查看	()
+		console.log(div);
+		//CRUD
+		var a = $("<a>");					//填写的是标签名就是创建标签
+		a.text("我靠jQuery真牛逼");
+		a.css("display","block");
+		div.append(a);   	//把（）里的添加到调用的实例对象里去，==>  a.appendTo(div)  把调用的添加到（）里的对象里  （都是在最后添加）
+		var b = $("<span>");
+		b.click(function(){			//去掉on（）里为匿名函数，是事件的执行函数2
+			console.log("我靠jQuery真牛逼");
+		});
+		b.text("我靠jQuery真牛逼");
+		b.css("display","block");
+		div.prepend(b);		//把（）里的添加到调用的实例对象里去，==>  a.prependTo(div)  把调用的添加到（）里的对象里  （都是在最前添加）
+		div.eq(0).width("500px"); 			//eq()表示把原生节点转换为jQuery实例对象;
+		console.log(div.children().parent());	//查找子集 > children()    查找父级 parent()
+		console.log(div.find("span"),div.closest("body"));
+		div.click(function(){
+			$(this).siblings("div").attr("data-for",1);
+			$(this).attr("data-for",2);
+		});
+		div.removeAttr("data-index");		//删除属性		attr("data-index","")删不掉，属性名还在
+		console.log(div.eq(0).position());	//offset
+		console.log(div.eq(0).offset());	//pageX
+		div.click(function(){
+			var left = this.style.marginLeft || 0;
+			left = +left.substring(0,left.indexOf("p"));
+			console.log(left + 50);
+			$(this).stop().animate({
+				marginLeft: left + 50
+			},500)
+		});
+		/*
+			jQuery下的方法：
+				$函数:
+					1.传入一个匿名事件，就等于 onload 加载时间，jQuery加载事件是等待body内标签加载完毕后执行
+					2.传入css选择器用来获取元素
+					3.传入一个原生node节点，转换为jQuery实例对象
+					4.传入字符串形式的标签，用来创建jQuery节点
+				链式调用：
+					jQuery实例对象使用一次方法，返回值是jQuery实例对象，就可以继续调用下边的方法。
+				jQuery事件:
+				 	去掉on，剩下的事件名是一个方法，先调用，在这个方法中传一个匿名函数，做事件函数。
+		*/
+	</script>
+</body>
+</html>

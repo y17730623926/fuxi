@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>只用于生产对象</title>
+</head>
+<body>
+	<script>
+		//工厂模式：批量生产对象
+		function ganfan() {		
+			console.log("干饭人干饭魂干饭都是人上人------》 奥里给" + this.name);    //这里的this指向的是调用这个方法的对象；
+		}
+		function fn( name, age, six) {
+			var obj = new Object();
+			obj.name = name;
+			obj.age = age;
+			obj.six = six;
+			//通用的方法写到每个对象下的属性中，每个对象都会有一个通用的方法，浪费内存。
+			obj.ganfan = ganfan;//解决方法：将每个对象的通用方法（函数）提出到全局/局部作用域中，每个对象中的属性指向这个函数地址
+			//工厂模式中的通用函数占用了全局/局部作用域，如果通用函数过多可能会造成命名冲突。不完美
+			return obj;
+		}
+		// var tom = fn("Tom","20","男");
+		// tom.ganfan();
+		// console.log(typeof ganfan());   //undefind
+		/*
+			构造函数：批量生产对象      工厂模式的生级版
+				构造函数首字母大写（不成文规定）
+				new关键字用来生产实例对象
+				构造函数中的this会指向new关键字创建的对象
+		*/
+		//构造函数：
+			function Fn(name,age) {
+				this.name = name;
+				this.age = age;
+			}
+			console.log(new Fn("Tom",20));
+		/*
+			new 关键字的作用：
+
+		​		1. 在函数体中声明了一个空对象
+
+		​		2. 将函数体中的所有this 指向这个空对象
+
+		​		3. 逐行执行函数中的代码
+
+		​		4. 将空对象 return 返回出去
+		*/	
+		/*
+			原型和原型链
+			原型：
+				所有函数都有一个属性叫做 prototype 属性，这个属性的值是一个对象，所以叫他原型对象
+				构造函数的原型对象可以供实例对象使用，实例对象访问自身不存在的属性的时候，会去原型对象中查看是否存在
+				普通函数不会创建实例对象，所以原型对象对于普通函数，没有作用
+				将通用的特征或行为存放在原型对象中，内存只占用一份，同时命名不会影响作用域
+				原型对象中有一个自带的 constructor ，叫做构造器，构造器指向构造函数，可以用来分辨原型对象是属于哪个构造函数的
+				实例对象下有一个属性__proto__（前后都是两个_）也可以指向构建它的构造函数的原型对象。
+
+				实例对象.__proto__ === 构造函数.prototype  (都是原型对象)
+				实例对象.__proto__.constructor === 构造函数  (都是构造函数)
+
+			原型链：
+				每一个对象都可有有一个原型__proto__，这个原型还可以有它自己的原型，以此类推，形成一个原型链。查找特定属性的时候，
+				我们先去这个对象里查找，如果没有的话就去它的原型对象里去找，如果还没有的话，再去向原型对象的原型对象里去找.....
+				这个操作被委托在整个原型链上，这就是我们说的原型链了。
+		*/
+	</script>
+</body>
+</html>

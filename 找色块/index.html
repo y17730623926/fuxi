@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>找色块</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+        .content {
+            width: 500px;
+            height: 500px;
+            background-color: darkgrey;
+            margin: 0 auto;
+            text-align: center;
+            color: pink;
+        }
+        .gameView {
+            width: 400px;
+            height: 400px;
+            border: 1px solid yellowgreen;
+            margin: 20px auto;
+        }
+        .colorView {
+            float: left;
+            margin: 1px 0 0 1px;
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+    <div class="content">
+        <h1>找色块</h1>
+    </div>
+    <script>
+        (function (){
+            var x = 2;
+            var content = document.getElementsByClassName("content")[0];
+            gameView();
+            // 创建游戏界面
+            function gameView() {
+                var gameView = document.createElement("div");
+                gameView.className = "gameView";
+                // 随机数
+                var s = Math.random()*x*x;
+				s = parseInt(s);
+
+                for (var i =0; i < x*x; i++){
+                    var colorView =  createColorView(x);
+                    if (i === s) {
+                        colorView.style.opacity = 0.5;
+                        colorView.onclick = success;//成功
+                    }else {
+                        colorView.onclick = failed;//失败
+                    }
+                    gameView.appendChild(colorView);
+                }
+                content.appendChild(gameView);
+            }
+            // 创建小盒子
+            function createColorView(x) {
+                var w = 400 - (1*x);
+                var h = w;
+                var colorView = document.createElement("div");
+                colorView.className = "colorView";
+                colorView.style.width = w/x +"px";
+                colorView.style.height = h/x +"px";
+                return colorView;
+            }
+            // 成功函数
+            function success() {
+                x++;
+                content.removeChild(content.children[1]);
+                // console.log(content.children[1])
+                gameView();
+            }
+            // 失败函数
+            function failed() {
+                alert("你是真的菜！");
+                x = 2;
+                content.removeChild(content.children[1]);
+                gameView();
+            }
+        })()
+    </script>
+</body>
+
+</html>

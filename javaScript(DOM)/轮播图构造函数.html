@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<script src="./插件/jQuery1.12.4.js"></script>
+	<style>
+		* {
+			padding: 0;
+			margin: 0;
+		}
+		.warp {
+			width: 520px;
+			height: 300px;
+		}
+	</style>
+</head>
+<body>
+	<div class="warp">
+		<div class="warp_box">
+			<div class="img_box">
+				<div class="img_div">
+					<img src="./img/1.jpg" alt="">
+				</div>
+				<div class="img_div">
+					<img src="./img/2.jpg" alt="">
+				</div>
+				<div class="img_div">
+					<img src="./img/3.jpg" alt="">
+				</div>
+				<div class="img_div">
+					<img src="./img/4.jpg" alt="">
+				</div>
+			</div>
+		</div>
+		<div class="click_span">下一页</div>
+	</div>
+	<script>
+		/*作者：yk 2020.12.02*/
+		function Lbt(warp,speed) {
+			this.warp = warp.css({"position":"relative"});	//大盒子
+			this.click_span = this.warp.find(".click_span").css({"position":"absolute","top": "50%", "right": "0", "display":"block", "background-color": "red", "cursor": "pointer", "user-select": "none"});	//下一页
+			this.warp_box = this.warp.find(".warp_box").css({"cursor":"pointer"});		//可视区域
+			this.warp_box_width = this.warp_box.width();		//可视区域的宽度
+			this.warp_box.css({"width": "inherit","height": "inherit","overflow": "hidden"});	
+			this.img_box = this.warp_box.find(".img_box");		//图片大盒子
+			this.img_box.css({"width": "auto", "height": "inherit", "display": "flex"});
+			this.img_div = this.img_box.find(".img_div");		//图片盒子
+			this.img_div.find("img").css({"display": "block" ,"width": this.warp_box_width+"px","height":"100%"});
+			var _this = this;
+			this.index = 0;
+			this.speed = speed;
+			this.click_span.click(function () {
+				_this.lbt_animation(_this.speed);
+			});
+		}
+		Lbt.prototype.lbt_animation = function (speed) {
+			this.index++;
+			this.index = this.index >= this.img_div.length ? 0 : this.index;
+			console.log();
+			if (!speed){
+				speed = 600;
+			}
+			this.img_box.stop().animate({
+				marginLeft: -this.index * this.warp_box_width + "px"
+			},speed);
+		}
+		var myLbt = new Lbt($(".warp"));
+	</script>
+</body>
+</html>

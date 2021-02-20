@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+        .warp {
+            width: 206px;
+            height: 116px;
+            margin: 100px auto;
+        }
+        .warp a {
+            display: block;
+            width: 206px;
+            height: 116px;
+            position: relative;
+        }
+        .warp a i {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 40px;
+            height: 24px;
+            background-size: contain;
+            transition: opacity .3s;
+            background-image: url("./img/微信图片_202011241407201.png");
+        }
+        .warp a img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            border-radius: 2px;
+        }
+        .warp a .bg_div{
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+            opacity: 0;
+            transition: opacity .3s;
+            z-index: 1;
+            background-position: 0px 0px;
+            background-image: url("./img/微信图片_202011241407201.jpg");
+            background-size: 2060px;
+        }
+        .warp a .bg_div p {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 10px;
+            border-color: #000;
+            border-width: 4px 8px;
+            box-sizing: border-box;
+            border-style: solid;
+            background: #444;
+        }
+        .warp a .bg_div p span {
+            display: block;
+            width: 0%;
+            height: 2px;
+            background-color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <div class="warp">
+        <a href="#">
+            <i></i>
+            <img src="./img/微信图片_20201124140720.jpg" alt="">
+            <div class="bg_div">
+                <p><span></span></p>
+            </div>
+        </a>
+    </div>
+    <script>
+        (function () {
+            var warp_a = document.querySelector(".warp > a");
+            var i = document.querySelector(".warp > a > i");
+            var bg_div = document.querySelector(".bg_div");
+            var bg_div_span = document.querySelector(".bg_div > p > span");
+            warp_a.onmouseenter = function (e) {
+                i.style.opacity = 0;
+                bg_div.style.opacity = 1;
+
+                warp_a.onmousemove = function (e) {
+                    X = e.clientX - warp_a.offsetLeft;
+                    danwei = warp_a.offsetWidth / 58;
+                    zhangshu = Math.floor(X / danwei) * bg_div.offsetWidth; 
+                    bg_div.style.backgroundPositionX = -zhangshu + "px";
+                    bg_div.style.backgroundPositionY = "0px";
+                    if (zhangshu / bg_div.offsetWidth > 10 && zhangshu / bg_div.offsetWidth <= 20) {
+                        bg_div.style.backgroundPositionX = -(zhangshu - 10 * bg_div.offsetWidth) + "px";
+                        bg_div.style.backgroundPositionY = -bg_div.offsetHeight +"px";
+                    } else if (zhangshu / bg_div.offsetWidth > 20 && zhangshu / bg_div.offsetWidth <= 30) {
+                        bg_div.style.backgroundPositionX = -(zhangshu - 20 * bg_div.offsetWidth) + "px";
+                        bg_div.style.backgroundPositionY = -(bg_div.offsetHeight * 2) + "px";
+                    } else if (zhangshu / bg_div.offsetWidth > 30 && zhangshu / bg_div.offsetWidth <= 40) {
+                        bg_div.style.backgroundPositionX = -(zhangshu - 30 * bg_div.offsetWidth) + "px";
+                        bg_div.style.backgroundPositionY = -(bg_div.offsetHeight * 3) + "px";
+                    } else if (zhangshu / bg_div.offsetWidth > 40 && zhangshu / bg_div.offsetWidth <= 50) {
+                        bg_div.style.backgroundPositionX = -(zhangshu - 40 * bg_div.offsetWidth) + "px";
+                        bg_div.style.backgroundPositionY = -(bg_div.offsetHeight * 4) + "px";
+                    } else if (zhangshu / bg_div.offsetWidth > 50 && zhangshu / bg_div.offsetWidth <= 60) {
+                        bg_div.style.backgroundPositionX = -(zhangshu - 50 * bg_div.offsetWidth) + "px";
+                        bg_div.style.backgroundPositionY = -(bg_div.offsetHeight * 5) + "px";
+                    }
+                    x = bg_div.clientWidth * X / warp_a.clientWidth;                 //span要有多少宽度
+                    bg_div_span.style.width =(x / bg_div.clientWidth * 100)+ "%";    //算百分比    
+                }
+            }
+            warp_a.onmouseleave = function () {
+                i.style.opacity = 1;
+                bg_div.style.opacity = 0;
+            }
+        })();
+    </script>
+</body>
+</html>

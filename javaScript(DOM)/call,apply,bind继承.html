@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		/*
+			继承：
+				call  apply  bind	（强制改变this指向）
+				call和apply调用这个方法函数直接执行，bind方法调用时返回的是改变this指向后的函数体，需要用时自行调用。
+				这三个方法的第一个参数都是要改变到哪的this的指向（对象）
+				call方法传递参数时，从第二个参数开始依次都是原函数的形参，用逗号隔开
+				apply方法传递参数时，第二个参数是一个数组，数组中每一位对应的就是原函数的形参
+				bind方法传递参数时，调用后返回的是改变this后的函数体，手动调用再在（）里直接传递参数就行
+
+		*/
+		// var a = {
+		// 	name : "Tom",
+		// 	age : 23
+		// }
+		// var b = {
+		// 	name : "Jirei",
+		// 	age : 22
+		// }
+		// var c = {
+		// 	name : "fash",
+		// 	age : 20
+		// }
+		// function fn1() {
+		// 	console.log(this.name,this.age);··
+		// }
+		// fn1();
+		// fn1.call(a);
+		// fn1.apply(b);
+		// var fn = fn1.bind(c);
+		// fn();
+		function Fn(name, age) {
+			this.name = name;
+			this.age = age;
+			this.fn1 = function (){
+				console.log(this.age,this.name);
+			}
+			Fn.prototype.sex = "男";
+		}
+		// Fn.prototype.fn1 = function (){
+		// 	console.log(this.age,this.name);
+		// }
+		var a = new Fn("Tom", 23);
+		a.fn1();					//"Tom" , 23
+		console.log(a.sex);			//男
+		function Fn1(name, age) {
+			Fn.call(this,name,age);
+		}
+		Fn1.prototype = new Fn();
+
+		var b = new Fn1("je",20);
+		console.log(b);
+		b.fn1();					//"je", 20
+		console.log(b.sex);			//男
+		console.dir(Fn1);
+		console.dir(Fn);
+	</script>
+</body>
+</html>
